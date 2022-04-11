@@ -10,6 +10,7 @@ module.exports = override( // 实现ant-design的按需加载
         style: 'css',
     }),
     addWebpackAlias({ // 快捷路径 在tsconfig.json配置了
-       
+       "@" : path.resolve(__dirname, "./src"),
+       "@page" : path.resolve(__dirname, "src/page")
     })
 )

@@ -12,3 +12,5 @@
 ### `TypeScript` 使用typeScript 
 
 ### `配置路由` 使用element={<item.component></item.component>} 需要用中括号包起来，否则只是回传一个方法无法构成组件，原因待查
+
+### `node.js` node.js的版本更新到16.14.2 否则报了个eslint的问题

@@ -15,19 +15,23 @@
         "src/page/*"
       ]
     },
-    "allowJs": true,
+    "allowJs": true, // 是否编译js文件
+    "checkJs" : false, // 是否检查js文件 默认false
+    "removeComments": false, // 编译时把注释去掉
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
+    "strict": true, //启用所有严格类型检查选项
+    // "noImplicitAny": false,//在表达式和声明上有隐含的any类型时报错 strict模式下默认开启了
+    // "strictNullChecks": true,//启用严格的null检查 strict模式下默认开启了
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
+    "module": "esnext", // 输出的模块化 commonjs es 等
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "noEmit": true, // 不生成编译文件，只作代码检测时用
+    "jsx": "react-jsx",
   },
   "include": [
     "src"
