@@ -3,6 +3,7 @@ import { Layout, Menu, Breadcrumb } from 'antd'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import './layout.css'
 import { SetRoutes, menuRoutes } from '../router/route'
+import type { routeType } from '../router/route'
 import {
   DesktopOutlined,
   PieChartOutlined,
@@ -10,18 +11,7 @@ import {
   TeamOutlined,
   UserOutlined
 } from '@ant-design/icons'
-import Item from 'antd/lib/list/Item'
-import { log } from 'console'
-
 const { Header, Content, Footer } = Layout
-const { SubMenu } = Menu
-interface routeType {
-  path: string
-  element: React.ReactElement
-  name: string
-  menuShow: boolean
-  children?: routeType[]
-}
 class Navigation extends React.Component {
   public render() {
     return (
@@ -60,15 +50,15 @@ class Navigation extends React.Component {
         return pre
       } else {
         pre.push(
-          <SubMenu key={next.path} icon={<UserOutlined />} title={next.name}>
+          <Menu.SubMenu key={next.path} icon={<UserOutlined />} title={next.name}>
             {next.children.map((item: any) => {
               return (
                 <Menu.Item key={item.path}>
-                  <Link to={item.path}>{item.name}</Link>
+                  <Link to={next.path + item.path}>{item.name}</Link>
                 </Menu.Item>
               )
             })}
-          </SubMenu>
+          </Menu.SubMenu>
         )
         return pre
       }

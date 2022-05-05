@@ -1,29 +1,30 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
-import ReactDOM from 'react-dom'
 import { store } from './store'
 import './index.css'
 import App from './App'
-import Layout from './layout/layout'
 import reportWebVitals from './reportWebVitals'
+import { Layout } from 'antd'
 
-ReactDOM.render(
+// ReactDOM.render(
+//   <Provider store={store}>
+//     <React.StrictMode>
+//       <Layout />
+//     </React.StrictMode>
+//   </Provider>,
+//   document.getElementById('root')
+// )
+const container = document.getElementById('root') as HTMLElement
+const root = createRoot(container)
+root.render(
   // Provider专门为多个容器组件传递store，不用每个容器组件单独传store
   <Provider store={store}>
     <React.StrictMode>
-      <Layout />
+      <App />
     </React.StrictMode>
-  </Provider>,
-  document.getElementById('root')
+  </Provider>
 )
-// const container = document.getElementById('root')
-// const root = createRoot(container);
-// root.render(
-//       <React.StrictMode>
-//        <Layout />
-//      </React.StrictMode>
-//      );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

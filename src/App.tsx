@@ -1,13 +1,16 @@
-import './App.css';
+import './App.css'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Layout from '@/layout/Layout'
+import NotFound from './page/NotFound'
+import { SetRoutes } from './router/route'
 
 function App() {
   return (
     <div className='App'>
-      <header className='App-header'>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
+      {/* <Router> */}
+      {/* <SetRoutes /> */}
+      <Layout />
+      {/* </Router> */}
     </div>
   )
 }
