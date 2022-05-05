@@ -1,5 +1,5 @@
 import './App.css'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import Layout from '@/layout/Layout'
 import NotFound from './page/NotFound'
 import { SetRoutes } from './router/route'
@@ -7,10 +7,10 @@ import { SetRoutes } from './router/route'
 function App() {
   return (
     <div className='App'>
-      {/* <Router> */}
-      {/* <SetRoutes /> */}
-      <Layout />
-      {/* </Router> */}
+      <Router>
+        {/* <Layout /> */}
+        <SetRoutes />
+      </Router>
     </div>
   )
 }

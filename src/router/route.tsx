@@ -1,6 +1,7 @@
 import Home from '@page/Home'
 import NotFound from '@page/NotFound'
 import React from 'react'
+import Layout from '@/layout/Layout'
 import Personal from '@page/personal/Personal'
 import Counter from '@page/counter/Counter'
 import { useRoutes } from 'react-router-dom' // 使用useRoutes包装路由，需要配置好path,element
@@ -21,7 +22,7 @@ const menuRoutes: routeType[] = [
     menuShow: false // 是否在菜单项显示
   },
   {
-    path: '/test',
+    path: '/test/',
     name: '首页',
     menuShow: true, // 是否在菜单项显示
     children: [
@@ -58,11 +59,41 @@ const menuRoutes: routeType[] = [
     menuShow: false
   }
 ]
-
+const fullRoutes: routeType[] = [
+  {
+    path: '/',
+    element: <Layout />,
+    name: '首页',
+    menuShow: false, // 是否在菜单项显示
+    children: menuRoutes
+  },
+  {
+    path: '/404',
+    element: <NotFound />,
+    name: 'not found',
+    menuShow: false
+  },
+  {
+    path: '/*',
+    element: <NotFound />,
+    name: 'not found',
+    menuShow: false
+  }
+  // {
+  //   path: '/login',
+  //   element: <Personal />,
+  //   name: 'login',
+  //   menuShow: false
+  // }
+]
 const SetRoutes = () => {
-  const Routes = useRoutes(menuRoutes)
+  const Routes = useRoutes(fullRoutes)
   return Routes
 }
 
-export { SetRoutes, menuRoutes }
+const ContentRoutes = () => {
+  return useRoutes(menuRoutes)
+}
+
+export { SetRoutes, ContentRoutes, menuRoutes }
 export type { routeType }

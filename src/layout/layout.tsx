@@ -2,7 +2,7 @@ import React from 'react'
 import { Layout, Menu, Breadcrumb } from 'antd'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import './layout.css'
-import { SetRoutes, menuRoutes } from '../router/route'
+import { SetRoutes, ContentRoutes, menuRoutes } from '../router/route'
 import type { routeType } from '../router/route'
 import {
   DesktopOutlined,
@@ -16,26 +16,26 @@ class Navigation extends React.Component {
   public render() {
     return (
       <Layout>
-        <Router>
-          <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-            <div className='logo' />
-            <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['2']}>
-              {this.menuPackage(menuRoutes)}
-            </Menu>
-          </Header>
-          <Content className='site-layout' style={{ padding: '0 50px', marginTop: 64 }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>List</Breadcrumb.Item>
-              <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb>
-            <div className='site-layout-background'>
-              {/* 利用useRouter封装的路由 */}
-              <SetRoutes />
-            </div>
-          </Content>
-          <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
-        </Router>
+        {/* <Router> */}
+        <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+          <div className='logo' />
+          <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['2']}>
+            {this.menuPackage(menuRoutes)}
+          </Menu>
+        </Header>
+        <Content className='site-layout' style={{ padding: '0 50px', marginTop: 64 }}>
+          <Breadcrumb style={{ margin: '16px 0' }}>
+            <Breadcrumb.Item>Home</Breadcrumb.Item>
+            <Breadcrumb.Item>List</Breadcrumb.Item>
+            <Breadcrumb.Item>App</Breadcrumb.Item>
+          </Breadcrumb>
+          <div className='site-layout-background'>
+            {/* 利用useRouter封装的路由 */}
+            <ContentRoutes />
+          </div>
+        </Content>
+        <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+        {/* </Router> */}
       </Layout>
     )
   }
