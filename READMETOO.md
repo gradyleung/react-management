@@ -31,3 +31,7 @@ npm install cross-env后
 ### `使用react-redux` 状态管理器
 
 ### `redux-saga` 一种处理更复杂的中间件，可取代redux-thunk
+
+### `less` 在config-override配置容易出现问题，改用默认配置的scss
+
+### `mockjs` 在page中引入mock文件，直接调用

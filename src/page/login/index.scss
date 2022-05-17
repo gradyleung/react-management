@@ -1,0 +1,24 @@
+.login_bg{
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: url('~@/assets/image/login_bg2.jpg') no-repeat fixed center;
+  .login_card {
+    width: 520px;
+    height: 450px;
+    background-color: #f2f3f7;
+    border-radius: 20px;
+    text-align: center;
+    padding: 40px 32px;
+    .login_tab{
+      margin: 0 auto;
+    }
+    .ant-btn{
+      width : 400px;
+      height : 36px;
+      border-radius: 12px;
+    }
+  }
+}

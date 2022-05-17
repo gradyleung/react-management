@@ -4,6 +4,7 @@ import React from 'react'
 import Layout from '@/layout/Layout'
 import Personal from '@page/personal/Personal'
 import Counter from '@page/counter/Counter'
+import Login from '@page/login'
 import { useRoutes } from 'react-router-dom' // 使用useRoutes包装路由，需要配置好path,element
 
 interface routeType {
@@ -71,6 +72,12 @@ const fullRoutes: routeType[] = [
     path: '/404',
     element: <NotFound />,
     name: 'not found',
+    menuShow: false
+  },
+  {
+    path: '/login',
+    element: <Login />,
+    name: 'login',
     menuShow: false
   },
   {
