@@ -3,6 +3,7 @@ import NotFound from '@page/NotFound'
 import React from 'react'
 import Layout from '@/layout/Layout'
 import Personal from '@page/personal/Personal'
+import User from '@page/user/index'
 import Counter from '@page/counter/Counter'
 import Login from '@page/login'
 import { useRoutes } from 'react-router-dom' // 使用useRoutes包装路由，需要配置好path,element
@@ -52,6 +53,12 @@ const menuRoutes: routeType[] = [
     element: <Counter />,
     name: '计数器',
     menuShow: true
+  },
+  {
+    path: '/user',
+    element: <User />,
+    name: '用户管理',
+    menuShow: false
   },
   {
     path: '*',

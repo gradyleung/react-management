@@ -1,35 +1,28 @@
 import { useNavigate } from 'react-router-dom'
 import { Tabs, Form, Input, Button, Checkbox, message } from 'antd'
 import React, { useState } from 'react'
-import axios from 'axios'
+// import { axios } from '@/utils/request'
+import { Login, LoginParam } from '@/api/user'
 import '@/../mock/user' // mockjs模拟数据
 import './index.scss'
 const { TabPane } = Tabs
 
-const Login: React.FC = () => {
+const LoginComponent: React.FC = () => {
   const navigate = useNavigate()
   const callback = (key: string) => {
     console.log(key)
   }
-  const onFinish = (values: any) => {
+  const onFinish = (values: LoginParam) => {
     console.log(values)
     message.loading('登陆中').then(() => {
-      axios
-        .post('/getData', {
-          username: values.username,
-          password: values.password
-        })
-        .then((res) => {
-          console.log(res)
-
-          if (res.status === 200) {
-            message.destroy()
-            message.success('欢迎回来')
-            navigate('/')
-          } else {
-            message.error(res.statusText || '登录异常')
-          }
-        })
+      Login(values).then((res) => {
+        console.log(res)
+        if (res.status === 200) {
+          message.destroy()
+          message.success('欢迎回来')
+          navigate('/')
+        }
+      })
     })
   }
   const onFinishFailed = () => {
@@ -96,4 +89,4 @@ const Login: React.FC = () => {
   )
 }
 
-export default Login
+export default LoginComponent

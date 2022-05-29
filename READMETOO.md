@@ -35,3 +35,7 @@ npm install cross-env后
 ### `less` 在config-override配置容易出现问题，改用默认配置的scss
 
 ### `mockjs` 在page中引入mock文件，直接调用
+
+### `react-cookie` 处理cookie
+
+### `qs`库处理数据
