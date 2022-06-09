@@ -10,16 +10,6 @@ function resolve(dir) {
   return path.join(__dirname, '.', dir)
 }
 
-const devConfig = () => {
-  return {
-    proxy: {
-      '/mock': {
-        target: path.resolve(__dirname, './mock/index')
-      }
-    }
-  }
-}
-
 module.exports = {
   webpack: override(
     // 实现ant-design的按需加载
@@ -34,6 +24,5 @@ module.exports = {
       '@': path.resolve(__dirname, './src'),
       '@page': path.resolve(__dirname, 'src/page')
     })
-  ),
-  derServer: overrideDevServer(devConfig()) // 配置api proxy
+  )
 }

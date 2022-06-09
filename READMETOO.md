@@ -39,3 +39,12 @@ npm install cross-env后
 ### `react-cookie` 处理cookie
 
 ### `qs`库处理数据
+
+### `express mysql body-parser` 搭建服务器，连接数据库
+install babel-cli 去允许express使用es6的语法
+nodemon 热启动server,文件修改不需要重启node
+mysql 连接数据库
+npm install concurrently 同时执行start/node 两个服务
+
+### `setupProxy` 设置proxy 代理跨域以及网络请求
+在src下添加setupProxy.js，cra的webpack config有配置这个文件
