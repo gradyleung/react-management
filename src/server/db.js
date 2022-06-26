@@ -10,5 +10,9 @@ const db = {
   database: 'react-app'
 }
 const conn = mysql.createConnection(db)
-conn.connect()
+conn.connect((err) => {
+  // 连接数据库
+  if (err) throw new Error('fail to connect mysql')
+  console.log('线程id:' + conn.threadId)
+})
 module.exports = conn

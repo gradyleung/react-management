@@ -21,7 +21,6 @@ const service: AxiosInstance = axios.create({
 service.interceptors.response.use(
   (response: AxiosResponse) => {
     // 对响应数据进行处理
-    console.log(response)
     const { data, headers } = response
     if (headers.authorization) {
       // 判断是否授权
@@ -39,10 +38,12 @@ service.interceptors.response.use(
       case 504:
         message.error('网络超时')
         break
+      case 200:
+        break
       default:
-        message.info(data.message)
+        message.success(data.message)
     }
-    return response.data
+    return data
   },
   (error) => {
     const { response } = error
@@ -57,7 +58,6 @@ service.interceptors.response.use(
 // 请求拦截器
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
-    console.log(config)
     const token = localStorage.getItem('Bear_Token')
     const { headers } = config
     if (token && headers) headers.Authorization = `Bearer ${token}` // 增加header作为判断，因改版本的headers定义不包含undefined会报错

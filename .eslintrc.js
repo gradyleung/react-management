@@ -182,7 +182,7 @@ module.exports = {
         defaultAssignment: false
       }
     ],
-    'no-unreachable': 2,
+    'no-unreachable': 1,
     'no-unsafe-finally': 2,
     'no-unused-vars': [
       1,
@@ -233,7 +233,7 @@ module.exports = {
       }
     ],
     'space-before-blocks': [2, 'always'],
-    'space-before-function-paren': [2, 'never'],
+    'space-before-function-paren': [0, 'never'],
     'space-in-parens': [2, 'never'],
     'space-infix-ops': 2,
     'space-unary-ops': [
