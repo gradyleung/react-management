@@ -2,6 +2,7 @@ import { Button, Form, Input, Modal, Select } from 'antd'
 import React, { useState, useEffect } from 'react'
 import { createUser, editUser } from '@/api/user'
 import axios from 'axios'
+import '@/assets/style/form.scss'
 // 父组件传参
 interface DataType {
   id?: React.Key
@@ -53,44 +54,6 @@ const tailFormItemLayout = {
 
 const App = (props: IProps) => {
   const [form] = Form.useForm()
-  // const [initialValues, setValues] = useState<DataType>(Object)
-  // const [visible, setVisible] = useState<boolean>(false)
-  // const [formData, setFormData] = useState<DataType>(Object)
-  // const [confirmLoading, setConfirmLoading] = useState(false)
-  // const [modalText, setModalText] = useState('Content of the modal')
-  // const handleOk = () => {
-  //   setModalText('The modal will be closed after two seconds')
-  //   setConfirmLoading(true)
-  //   setTimeout(() => {
-  //     setVisible(false)
-  //     setConfirmLoading(false)
-  //   }, 2000)
-  // }
-
-  // const handleCancel = () => {
-  //   setVisible(false)
-  // }
-  const onFinish = (values: any) => {
-    console.log('Received values of form: ', values)
-    // if (props.type === 'create') {
-    //   createUser(values).then((res) => {
-    //     console.log(res)
-    //     if (res.status === 200) {
-    //       console.log('')
-    //       props.refresh()
-    //     }
-    //   })
-    // } else if (props.type === 'edit') {
-    //   values.id = props.currentRow.id
-    //   editUser(values).then((res) => {
-    //     console.log(res)
-    //     if (res.status === 200) {
-    //       console.log('')
-    //       props.refresh()
-    //     }
-    //   })
-    // }
-  }
   useEffect(() => {
     form.setFieldsValue(props.currentRow)
     return () => {
@@ -99,7 +62,7 @@ const App = (props: IProps) => {
     }
   })
   return (
-    <Modal title='Title' visible={props.visible} onCancel={() => props.onCancel()}>
+    <Modal title='Title' visible={props.visible} onCancel={() => props.onCancel()} footer={null}>
       <Form
         {...formItemLayout}
         form={form}
@@ -163,6 +126,9 @@ const App = (props: IProps) => {
         <Form.Item {...tailFormItemLayout}>
           <Button type='primary' htmlType='submit'>
             Register
+          </Button>
+          <Button type='default' onClick={props.onCancel}>
+            Cancel
           </Button>
         </Form.Item>
       </Form>

@@ -58,16 +58,21 @@ const App: React.FC = () => {
     setVisible(true)
   }
 
-  const deleteItem = (id: React.Key) => {
+  const deleteItem = async (id: React.Key) => {
+    const hide = message.loading('deleting')
     const obj: object = { id: id }
-    removeUser(obj).then((res) => {
-      document.getElementById('searchBtn')?.click()
-    })
+    try {
+      removeUser(obj).then((res) => {
+        document.getElementById('searchBtn')?.click()
+      })
+      message.success('deleting is successful')
+    } catch {
+      hide()
+    }
   }
   const handleUpdate = async (fields: DataType) => {
     const hide = message.loading('editing')
     try {
-      console.log(currentRow)
       fields.id = currentRow.id
       await editUser(fields)
       hide()
@@ -82,7 +87,6 @@ const App: React.FC = () => {
   const handleCreate = async (fields: DataType) => {
     const hide = message.loading('creating')
     try {
-      console.log(currentRow)
       await createUser(fields)
       hide()
       message.success('create is successful')
@@ -211,17 +215,7 @@ const App: React.FC = () => {
   return (
     <div>
       {AdvancedSearchForm}
-      {/* <ResultList /> */}
       {ResultList}
-      {/* <Modal
-        title='Title'
-        visible={visible}
-        onOk={handleOk}
-        confirmLoading={confirmLoading}
-        onCancel={handleCancel}
-      >
-        <UserModel refresh={refresh} formData={formData} type={type} />
-      </Modal> */}
       <UserModel
         onSubmit={async (value) => {
           if (ifEdit) {
@@ -229,18 +223,14 @@ const App: React.FC = () => {
             if (success) {
               setVisible(false)
               setCurrentRow({})
-              // if (actionRef.current) {
-              //   actionRef.current.reload()
-              // }
+              refresh()
             }
           } else {
             const success = await handleCreate(value)
             if (success) {
               setVisible(false)
               setCurrentRow({})
-              // if (actionRef.current) {
-              //   actionRef.current.reload()
-              // }
+              refresh()
             }
           }
         }}
@@ -251,10 +241,8 @@ const App: React.FC = () => {
           }
         }}
         visible={visible}
-        // values={currentRow || {}}
         refresh={refresh}
         currentRow={currentRow}
-        // type={type}
       />
     </div>
   )
