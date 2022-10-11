@@ -19,7 +19,6 @@ interface IProps {
   onSubmit: (fields: DataType) => Promise<void>
   onCancel: () => void
   visible: boolean
-  // type: string
 }
 const formItemLayout = {
   labelCol: {
@@ -35,7 +34,7 @@ const formItemLayout = {
       span: 24
     },
     sm: {
-      span: 16
+      span: 20
     }
   }
 }
@@ -46,8 +45,8 @@ const tailFormItemLayout = {
       offset: 0
     },
     sm: {
-      span: 16,
-      offset: 8
+      span: 20,
+      offset: 4
     }
   }
 }

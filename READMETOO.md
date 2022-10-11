@@ -48,3 +48,6 @@ npm install concurrently 同时执行start/node 两个服务
 
 ### `setupProxy` 设置proxy 代理跨域以及网络请求
 在src下添加setupProxy.js，cra的webpack config有配置这个文件
+
+### `jsonwebtoekn + bcrypt + express-jwt` 登录，注册加入验证，加密等功能
+express-jwt内部引用了jsonwebtoken，对其封装使用。 在实际的项目中这两个都需要引用，他们两个的定位不一样。jsonwebtoken是用来生成token给客户端的，express-jwt是用来验证token的。

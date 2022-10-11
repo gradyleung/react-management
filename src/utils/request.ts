@@ -1,7 +1,8 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { message } from 'antd'
+import cookie from 'react-cookies'
+import { useNavigate } from 'react-router-dom'
 // import qs from 'qs'
-
 const service: AxiosInstance = axios.create({
   baseURL: process.env.BASEURL_API,
   timeout: 10000,
@@ -24,11 +25,11 @@ service.interceptors.response.use(
     const { data, headers } = response
     if (headers.authorization) {
       // 判断是否授权
-      localStorage.setItem('Bear_Token', headers.authorization)
+      cookie.save('Bear_Token', headers.authorization, { path: '/' })
     } else {
-      if (data?.token) {
+      if (data?.data.token) {
         // 另一种情况token放在返回data中
-        localStorage.setItem('Bear_Token', data.token)
+        cookie.save('Bear_Token', data.data.token, { path: '/' })
       }
     }
     switch (data.status) {
@@ -48,6 +49,13 @@ service.interceptors.response.use(
   (error) => {
     const { response } = error
     if (response) {
+      if (response.status === 401) {
+        message.error('登录失效')
+        setTimeout(() => {
+          window.location.href = '/login'
+        }, 500)
+        return Promise.reject(error)
+      }
       message.error(error.message)
       return Promise.reject(error)
     } else {
@@ -58,7 +66,7 @@ service.interceptors.response.use(
 // 请求拦截器
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
-    const token = localStorage.getItem('Bear_Token')
+    const token = cookie.load('Bear_Token')
     const { headers } = config
     if (token && headers) headers.Authorization = `Bearer ${token}` // 增加header作为判断，因改版本的headers定义不包含undefined会报错
     // 请求之前做些什么

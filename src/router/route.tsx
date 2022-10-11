@@ -6,7 +6,7 @@ import Personal from '@page/personal/Personal'
 import User from '@page/user/index'
 import Counter from '@page/counter/Counter'
 import Login from '@page/login'
-import { useRoutes } from 'react-router-dom' // 使用useRoutes包装路由，需要配置好path,element
+import { useRoutes, Navigate } from 'react-router-dom' // 使用useRoutes包装路由，需要配置好path,element
 
 interface routeType {
   path: string
@@ -23,25 +23,25 @@ const menuRoutes: routeType[] = [
     name: '首页',
     menuShow: false // 是否在菜单项显示
   },
-  {
-    path: '/test/',
-    name: '首页',
-    menuShow: true, // 是否在菜单项显示
-    children: [
-      {
-        path: 'personal',
-        element: <Personal />,
-        name: '个人',
-        menuShow: true
-      },
-      {
-        path: 'counter',
-        element: <Counter />,
-        name: '计数器',
-        menuShow: true
-      }
-    ]
-  },
+  // {
+  //   path: '/test/',
+  //   name: '首页',
+  //   menuShow: true, // 是否在菜单项显示
+  //   children: [
+  //     {
+  //       path: 'personal',
+  //       element: <Personal />,
+  //       name: '个人',
+  //       menuShow: true
+  //     },
+  //     {
+  //       path: 'counter',
+  //       element: <Counter />,
+  //       name: '计数器',
+  //       menuShow: true
+  //     }
+  //   ]
+  // },
   {
     path: '/person',
     element: <Personal />,
@@ -75,6 +75,19 @@ const fullRoutes: routeType[] = [
     menuShow: false, // 是否在菜单项显示
     children: menuRoutes
   },
+  // {
+  //   path: '/',
+  //   element: <Navigate to='/login' />,
+  //   name: '登录',
+  //   menuShow: false
+  // },
+  // {
+  //   path: '/home',
+  //   element: <Layout />,
+  //   name: '首页',
+  //   menuShow: false, // 是否在菜单项显示
+  //   children: menuRoutes
+  // },
   {
     path: '/404',
     element: <NotFound />,

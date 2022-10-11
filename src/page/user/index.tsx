@@ -25,18 +25,6 @@ const App: React.FC = () => {
   const [currentRow, setCurrentRow] = useState<DataType>(Object)
   const [confirmLoading, setConfirmLoading] = useState(false)
   const [modalText, setModalText] = useState('Content of the modal')
-  const handleOk = () => {
-    setModalText('The modal will be closed after two seconds')
-    setConfirmLoading(true)
-    setTimeout(() => {
-      setVisible(false)
-      setConfirmLoading(false)
-    }, 2000)
-  }
-
-  const handleCancel = () => {
-    setVisible(false)
-  }
   const onFinish = (values: any) => {
     getUserList(values).then((res) => {
       setLoading(false) // 停止加载旋转
@@ -98,8 +86,8 @@ const App: React.FC = () => {
     }
   }
   useEffect(() => {
-    // refresh()
-  })
+    refresh()
+  }, [])
   const AdvancedSearchForm = (
     <Form
       form={form}

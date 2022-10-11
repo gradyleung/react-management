@@ -1,3 +1,6 @@
+const jwt = require('jsonwebtoken')
+const { expressjwt: jwtAuth } = require('express-jwt') // 验证Token
+
 const isObject = (obj) => {
   return Object.prototype.toString.call(obj) === '[object Object]'
 }
@@ -27,7 +30,7 @@ const transfer = (originObj) => {
     return result
   }
 }
-const jsonWrite = (res, result, message) => {
+const jsonWrite = (res, result, obj) => {
   // 常用的返回方式有四种
   // res.json([status|body], [body]) 以json的形式返回数据
   // res.render(view [, locals] [, callback]) 返回对应的view和数据，此方法可以有回调函数，以处理可能出现的异常
@@ -41,10 +44,40 @@ const jsonWrite = (res, result, message) => {
     })
   } else {
     res.json({
-      status: 200,
-      message: message,
+      status: obj ? obj.code : 200,
+      message: obj ? obj.message : '请求成功',
       data: transfer(result)
     })
   }
 }
-module.exports = jsonWrite
+
+// token 的校验
+const secret = 'kfjsiongfd'
+
+const createToken = (data, expire) => {
+  const obj = {}
+  obj.data = data || {}
+  obj.cTime = new Date().getTime()
+  const token = jwt.sign(obj, secret, { expiresIn: 1 * 60 * 30 }) // 过期时间是s
+  return token
+}
+
+const verifyToken = (token) => {
+  let result = null
+  const { data, cTime, expiresIn } = jwt.verify(token, secret)
+  const nowTime = new Date().getTime()
+  if (nowTime - cTime < expiresIn) {
+    result = data
+  }
+  return result
+}
+
+const jwtVerify = jwtAuth({
+  // 处理token
+  secret: secret,
+  algorithms: ['HS256'] // 必填项
+}).unless({
+  path: ['/user/login'] // 除了这个地址，其他的URL都需要验证
+})
+
+module.exports = { jsonWrite, secret, jwtVerify, createToken, verifyToken }
