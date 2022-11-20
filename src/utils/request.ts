@@ -2,14 +2,11 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { message } from 'antd'
 import cookie from 'react-cookies'
 import { useNavigate } from 'react-router-dom'
-// import qs from 'qs'
+import qs from 'qs'
 const service: AxiosInstance = axios.create({
-  baseURL: process.env.BASEURL_API,
-  timeout: 10000,
-  // withCredentials: true, // 允许把cookie传递到后台
-  headers: {
-    'Content-Type': 'application/json;charset=utf-8'
-  }
+  baseURL: process.env.REACT_APP_BASEURL_API, // 后缀api是为了proxy转发请求
+  timeout: 10000
+  // withCredentials: true // 允许把cookie传递到后台
   // 如果content-Type 是 "application/x-www-form-urlencoded" 需要对 data 进行字符转义
   // transformRequest: [
   //   (data, headers) => {
@@ -60,16 +57,22 @@ service.interceptors.response.use(
       return Promise.reject(error)
     } else {
       message.error('网络连接异常,请稍后再试!')
+      return Promise.reject(error)
     }
   }
 )
 // 请求拦截器
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
+    // 请求之前做些什么
     const token = cookie.load('Bear_Token')
     const { headers } = config
     if (token && headers) headers.Authorization = `Bearer ${token}` // 增加header作为判断，因改版本的headers定义不包含undefined会报错
-    // 请求之前做些什么
+    // 后台能够直接处理的数据格式，是一种经过序列化的键值对数据
+    // post 默认用的是application/json，因此需要转化格式
+    if (config.method === 'post') {
+      config.data = qs.stringify(config.data)
+    }
     return config
   },
   (error) => {

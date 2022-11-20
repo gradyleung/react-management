@@ -2,25 +2,21 @@
 const { createProxyMiddleware: proxy } = require('http-proxy-middleware') // 固定写法
 
 // eslint-disable-next-line prettier/prettier
-module.exports = app => {
+// proxy 只能在开发环境使用，打包后无法使用。
+module.exports = (app) => {
   app.use(
     proxy('/express', {
-      target: 'http://localhost:8081',
+      target: 'http://120.24.97.46:8081 ',
       changeOrigin: true,
       pathRewrite: { '^/express': '' }
     })
   )
+  app.use(
+    proxy('/api', {
+      // api在request的baseUrl设置好，为转发所有请求使用
+      target: process.env.REACT_APP_TARGET_API,
+      changeOrigin: true,
+      pathRewrite: { '^/api': '' }
+    })
+  )
 }
-
-// import { createProxyMiddleware } from 'http-proxy-middleware'
-
-// eslint-disable-next-line space-before-function-paren
-// module.exports = function (app) {
-//   app.use(
-//     createProxyMiddleware('/express', {
-//       target: 'http://localhost:3002',
-//       changeOrigin: true,
-//       pathRewrite: { '^/express': '' }
-//     })
-//   )
-// }

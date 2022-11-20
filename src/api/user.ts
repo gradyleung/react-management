@@ -14,7 +14,7 @@ export interface LoginParam {
 
 export const Login = (param: LoginParam) => {
   return axios({
-    url: 'express/user/login',
+    url: '/user/login',
     method: 'post',
     data: param
   })
@@ -22,7 +22,7 @@ export const Login = (param: LoginParam) => {
 
 export const LoginOut = (param: LoginParam) => {
   return axios({
-    url: 'express/user/loginOut',
+    url: '/user/loginOut',
     method: 'post',
     data: param
   })
@@ -30,7 +30,7 @@ export const LoginOut = (param: LoginParam) => {
 
 export const Register = (param: LoginParam) => {
   return axios({
-    url: 'express/user/register',
+    url: '/user/register',
     method: 'post',
     data: param
   })
@@ -38,7 +38,7 @@ export const Register = (param: LoginParam) => {
 
 export const getUserList = (param: searchParam) => {
   return axios({
-    url: '/express/user/list',
+    url: '/user/list',
     method: 'post',
     data: param
   })
@@ -46,7 +46,7 @@ export const getUserList = (param: searchParam) => {
 
 export const createUser = (param: object) => {
   return axios({
-    url: '/express/user/create',
+    url: '/user/create',
     method: 'post',
     data: param
   })
@@ -54,7 +54,7 @@ export const createUser = (param: object) => {
 
 export const editUser = (param: object) => {
   return axios({
-    url: '/express/user/edit',
+    url: '/user/edit',
     method: 'post',
     data: param
   })
@@ -62,7 +62,7 @@ export const editUser = (param: object) => {
 
 export const removeUser = (param: object) => {
   return axios({
-    url: '/express/user/remove',
+    url: '/user/remove',
     method: 'get',
     params: param
   })

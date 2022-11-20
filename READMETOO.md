@@ -46,8 +46,12 @@ nodemon 热启动server,文件修改不需要重启node
 mysql 连接数据库
 npm install concurrently 同时执行start/node 两个服务
 
-### `setupProxy` 设置proxy 代理跨域以及网络请求
+### `setupProxy` 设置proxy 代理本地跨域以及网络请求
 在src下添加setupProxy.js，cra的webpack config有配置这个文件
+必须注意此方法只可解决本地跨域问题，原理在本地启动一个node服务去请求远方的服务，打包后无法启动此服务。在生产环境跨域依然建议通过nginx反向代理。
 
 ### `jsonwebtoekn + bcrypt + express-jwt` 登录，注册加入验证，加密等功能
 express-jwt内部引用了jsonwebtoken，对其封装使用。 在实际的项目中这两个都需要引用，他们两个的定位不一样。jsonwebtoken是用来生成token给客户端的，express-jwt是用来验证token的。
+
+### 跨域 
+post 默认用的是application/json，因此需要转化格式

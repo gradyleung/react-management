@@ -2,7 +2,7 @@ import Home from '@page/Home'
 import NotFound from '@page/NotFound'
 import React from 'react'
 import Layout from '@/layout/Layout'
-import Personal from '@page/personal/Personal'
+import Goods from '@page/goods/index'
 import User from '@page/user/index'
 import Counter from '@page/counter/Counter'
 import Login from '@page/login'
@@ -43,9 +43,9 @@ const menuRoutes: routeType[] = [
   //   ]
   // },
   {
-    path: '/person',
-    element: <Personal />,
-    name: '个人',
+    path: '/goods',
+    element: <Goods />,
+    name: '商品',
     menuShow: true
   },
   {

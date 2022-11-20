@@ -63,7 +63,7 @@ router.post('/user/list', (req, res) => {
   let ageSql
   if (age === '') {
     // 对age类型进行精确/模糊双重匹配
-    ageSql = `and age like '%%'`
+    ageSql = ``
   } else {
     ageSql = `and age = '${age}'`
   }
