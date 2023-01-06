@@ -4,7 +4,8 @@ import cookie from 'react-cookies'
 import { useNavigate } from 'react-router-dom'
 import qs from 'qs'
 const service: AxiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_BASEURL_API, // 后缀api是为了proxy转发请求
+  // baseURL: process.env.REACT_APP_BASEURL_API, // 后缀api是为了proxy转发请求
+  baseURL: 'http://120.24.97.46:8081/', // 后缀api是为了proxy转发请求
   timeout: 10000
   // withCredentials: true // 允许把cookie传递到后台
   // 如果content-Type 是 "application/x-www-form-urlencoded" 需要对 data 进行字符转义
