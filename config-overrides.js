@@ -21,7 +21,7 @@ module.exports = {
     removeModuleScopePlugin(), // 取消限制无法从外部引入文件
     addWebpackAlias({
       // 快捷路径 在tsconfig.json配置了
-      '@': path.resolve(__dirname, 'src'),
+      '@': path.resolve(__dirname, '../src'),
       '@page': path.resolve(__dirname, 'src/page')
     })
   )
